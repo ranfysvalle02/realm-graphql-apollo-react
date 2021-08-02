@@ -4,8 +4,10 @@ import * as Realm from "realm-web";
 import { useQuery, useMutation } from "@apollo/client";
 import { FIND_MOVIE, UPDATE_MOVIE } from "./graphql-operations";
 
+require('dotenv').config();
+
 export default function App(props) {
-  const APP_ID = process.env.APP_ID;
+  const APP_ID = process.env.REACT_APP_APP_ID;
 
   // Connect to your MongoDB Realm app
   const app = new Realm.App(APP_ID);
@@ -52,7 +54,13 @@ export default function App(props) {
     }
   }
   async function tryToLoginAnonymously(){
-    return await app.logIn(Realm.Credentials.anonymous());
+    try{
+      const realmUser = await app.logIn(Realm.Credentials.anonymous());
+      console.log('realmUser',realmUser);
+      localStorage.setItem('token',realmUser['_accessToken']);
+    }catch(e){
+      console.log('e-anon-login',e);
+    }
   }
   const tryToLogin = async function(){
     try{
