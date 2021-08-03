@@ -87,7 +87,7 @@ export default function App(props) {
     try{
       // The redirect URI should be on the same domain as this app and
       // specified in the auth provider configuration.
-      const redirectUri = "https://pedantic-golick-fdfeaa.netlify.app/";
+      const redirectUri = "https://mongodb-realm.oblivio.company/";
       const credentials = Realm.Credentials.facebook(redirectUri);
       // Calling logIn() opens a Facebook authentication screen in a new window.
       app.logIn(credentials).then(user => {
