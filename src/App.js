@@ -8,7 +8,7 @@ require('dotenv').config();
 
 export default function App(props) {
   const APP_ID = process.env.REACT_APP_APP_ID;
-
+  const FB_REDIRECT_URL = process.env.REACT_APP_FB_LOGIN_REDIRECT;
   // Connect to your MongoDB Realm app
   const app = new Realm.App(APP_ID);
 
@@ -87,13 +87,13 @@ export default function App(props) {
     try{
       // The redirect URI should be on the same domain as this app and
       // specified in the auth provider configuration.
-      const redirectUri = "https://mongodb-realm.oblivio.company/";
-      const credentials = Realm.Credentials.facebook(redirectUri);
+      const credentials = Realm.Credentials.facebook(FB_REDIRECT_URL);
       // Calling logIn() opens a Facebook authentication screen in a new window.
-      const user = await app.logIn(credentials);
+      const realmUser = await app.logIn(credentials);
       // The logIn() promise will not resolve until you call `handleAuthRedirect()`
       // from the new window after the user has successfully authenticated.
-      console.log('user',user);
+      console.log('realmUser',realmUser);
+      localStorage.setItem('token',realmUser['_accessToken']);
     }catch(e){
       console.log('e',e);
     }
