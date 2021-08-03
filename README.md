@@ -1,3 +1,17 @@
+Original Repo can be found here: https://github.com/mongodb-university/realm-graphql-apollo-react
+
+This is a fork from mongodb-university's realm-graphql-apollo-react example. I wanted it to include authentication scenarios more complicated than just Anonymous login (which is what the current example 
+provides)
+
+# Changes from the original fork
+
+1. .ENV variable usage
+2. GraphQL client now uses token from localStorage
+2. Login with e-mail/password
+3. Login with Facebook
+
+LIVE DEMO: https://mongodb-realm.oblivio.company/
+
 # MongoDB Realm GraphQL - Apollo (React)
 
 This code demonstrates how to connect to your MongoDB Realm app's [GraphQL
