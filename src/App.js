@@ -93,19 +93,18 @@ export default function App(props) {
       const user = await app.logIn(credentials);
       // The logIn() promise will not resolve until you call `handleAuthRedirect()`
       // from the new window after the user has successfully authenticated.
-      console.log(`Logged in with id: ${user.id}`);
-      // When the user is redirected back to your app, handle the redirect to
-      // save the user's access token and close the redirect window. This
-      // returns focus to the original application window and automatically
-      // logs the user in.
-      Realm.handleAuthRedirect();
+      console.log('user',user);
     }catch(e){
       console.log('e',e);
     }
   };
 
-  Realm.handleAuthRedirect();
-  
+  try{
+    Realm.handleAuthRedirect();
+  }catch(e){
+    console.log('not a redirect from oauth');
+  }
+
   
   return (
     <div className="App">
