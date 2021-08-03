@@ -83,6 +83,28 @@ export default function App(props) {
     }
   };
 
+  const tryToLoginWithFB = async function(){
+    try{
+      // The redirect URI should be on the same domain as this app and
+      // specified in the auth provider configuration.
+      const redirectUri = "https://pedantic-golick-fdfeaa.netlify.app/";
+      const credentials = Realm.Credentials.facebook(redirectUri);
+      // Calling logIn() opens a Facebook authentication screen in a new window.
+      app.logIn(credentials).then(user => {
+        // The logIn() promise will not resolve until you call `handleAuthRedirect()`
+        // from the new window after the user has successfully authenticated.
+        console.log(`Logged in with id: ${user.id}`);
+      })
+      // When the user is redirected back to your app, handle the redirect to
+      // save the user's access token and close the redirect window. This
+      // returns focus to the original application window and automatically
+      // logs the user in.
+      Realm.handleAuthRedirect();
+    }catch(e){
+      console.log('e',e);
+    }
+  };
+
   
   return (
     <div className="App">
@@ -93,6 +115,16 @@ export default function App(props) {
           onClick={() => tryToLoginAnonymously()}
         >
           Login Anonymously
+        </button>
+      </div>
+      <hr /> 
+      <h1>Sign in with Facebook</h1>
+      <div className="title-input">
+        <button
+          className="fancy-button"
+          onClick={() => tryToLoginWithFB()}
+        >
+          Login with FB
         </button>
       </div>
       <hr /> 
