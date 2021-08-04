@@ -4,11 +4,12 @@ import * as Realm from "realm-web";
 import { useQuery, useMutation } from "@apollo/client";
 import { FIND_MOVIE, UPDATE_MOVIE } from "./graphql-operations";
 
+var URL = require('url').URL;
+
 require('dotenv').config();
 
 export default function App(props) {
   const APP_ID = process.env.REACT_APP_APP_ID;
-  const FB_REDIRECT_URL = process.env.REACT_APP_FB_LOGIN_REDIRECT;
   // Connect to your MongoDB Realm app
   const app = new Realm.App(APP_ID);
 
@@ -87,7 +88,7 @@ export default function App(props) {
     try{
       // The redirect URI should be on the same domain as this app and
       // specified in the auth provider configuration.
-      const credentials = Realm.Credentials.facebook();
+      const credentials = Realm.Credentials.facebook("https://mongodb-realm.oblivio.company/?redirect=1");
       // Calling logIn() opens a Facebook authentication screen in a new window.
       const realmUser = await app.logIn(credentials);
       // The logIn() promise will not resolve until you call `handleAuthRedirect()`
