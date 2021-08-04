@@ -99,10 +99,14 @@ export default function App(props) {
     }
   };
 
-  try{
-    Realm.handleAuthRedirect();
-  }catch(e){
-    console.log('not a redirect from oauth');
+  url = new URL(window.location.href);
+
+  if (url.searchParams.get('redirect')) {
+    try{
+      Realm.handleAuthRedirect();
+    }catch(e){
+      console.log('not a redirect from oauth');
+    }
   }
 
   
