@@ -142,7 +142,7 @@ export default function App(props) {
           className="fancy-button"
           onClick={() => tryToLoginAnonymously()}
         >
-          Login Anonymously
+          LOGOUT
         </button>
       </div>
       <hr /> 
