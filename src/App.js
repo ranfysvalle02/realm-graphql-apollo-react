@@ -97,6 +97,7 @@ export default function App(props) {
   const tryToLogout = async function(){
     if(app.currentUser){
       await app.currentUser.logOut();
+      window.location.reload();
     }
   };
   
@@ -117,7 +118,7 @@ export default function App(props) {
           className="fancy-button"
           onClick={() => tryToLogout()}
         >
-          Logout
+          LOGOUT
         </button>
       </div>
       <hr /> 
@@ -127,7 +128,7 @@ export default function App(props) {
           className="fancy-button"
           onClick={() => tryToLoginAnonymously()}
         >
-          LOGOUT
+          Login Anonymously
         </button>
       </div>
       <hr /> 
