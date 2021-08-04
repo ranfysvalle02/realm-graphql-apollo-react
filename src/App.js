@@ -38,7 +38,7 @@ export default function App(props) {
   };
   
   async function registerUser(email,password){
-    return await app.emailPasswordAuth.registerUser(email, password).then((xx)=>{console.log('que?',xx)});
+    return await app.emailPasswordAuth.registerUser(email, password).then((registeredUser)=>{console.log('registeredUser',registeredUser)});
   }
   async function loginEmailPassword(email, password) {
     // Create an anonymous credential
