@@ -108,6 +108,12 @@ export default function App(props) {
       console.log('e',e);
     }
   };
+
+  const tryToLogout = async function(){
+    if(app.currentUser){
+      app.currentUser.removeUser();
+    }
+  };
   
   if(window.location.search && String(window.location.search).includes("?redirect=1")){
     try{

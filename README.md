@@ -6,7 +6,6 @@ provides)
 # Changes from the original fork
 
 1. .ENV variable usage
-2. GraphQL client now uses token from localStorage
 2. Login with e-mail/password
 3. Login with Facebook
 
