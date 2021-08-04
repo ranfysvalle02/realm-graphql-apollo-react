@@ -94,21 +94,6 @@ export default function App(props) {
     }
   };
 
-  const tryToLoginWithFB = async function(){
-    try{
-      // The redirect URI should be on the same domain as this app and
-      // specified in the auth provider configuration.
-      const credentials = Realm.Credentials.facebook("https://mongodb-realm.oblivio.company/?redirect=1");
-      // Calling logIn() opens a Facebook authentication screen in a new window.
-      const realmUser = await app.logIn(credentials);
-      // The logIn() promise will not resolve until you call `handleAuthRedirect()`
-      // from the new window after the user has successfully authenticated.
-      console.log('realmUser',realmUser);
-    }catch(e){
-      console.log('e',e);
-    }
-  };
-
   const tryToLogout = async function(){
     if(app.currentUser){
       app.currentUser.removeUser();
