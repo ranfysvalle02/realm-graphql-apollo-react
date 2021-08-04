@@ -34,6 +34,7 @@ async function getValidAccessToken() {
   if (!app.currentUser) {
     // If no user is logged in, log in an anonymous user. The logged in user will have a valid
     // access token.
+    localStorage.clear();
     //await app.logIn(Realm.Credentials.anonymous());
   } else {
     // An already logged in user's access token might be stale. To guarantee that the token is
