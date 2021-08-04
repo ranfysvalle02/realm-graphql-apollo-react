@@ -96,7 +96,7 @@ export default function App(props) {
 
   const tryToLogout = async function(){
     if(app.currentUser){
-      app.currentUser.removeUser();
+      app.currentUser.remove();
     }
   };
   
