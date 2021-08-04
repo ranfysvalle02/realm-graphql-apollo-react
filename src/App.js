@@ -11,6 +11,10 @@ export default function App(props) {
   // Connect to your MongoDB Realm app
   const app = new Realm.App(APP_ID);
 
+  app.allUsers.forEach(user => {
+    console.log(`User with id ${user.id} is ${user.isLoggedIn ? "logged in" : "logged out"}`);
+  });
+
   const [searchText, setSearchText] = React.useState("The Matrix Reloaded");
   const { loading, data } = useQuery(FIND_MOVIE, {
     variables: { query: { title: searchText } },
