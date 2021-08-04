@@ -55,7 +55,6 @@ export default function App(props) {
     try{
       const realmUser = await app.logIn(Realm.Credentials.anonymous());
       console.log('realmUser',realmUser);
-      localStorage.setItem('token',realmUser['_accessToken']);
     }catch(e){
       console.log('e-anon-login',e);
     }
@@ -64,7 +63,6 @@ export default function App(props) {
     try{
       const realmUser = await loginEmailPassword(loginEmail,loginEmailPwd);
       console.log('realmUser',realmUser);
-      localStorage.setItem('token',realmUser['_accessToken']);
     }catch(e){
       // double login theoretically works without requiring a logout
       // TODO: double login does not trigger an error. find out how to track auth status elegantly
@@ -91,7 +89,21 @@ export default function App(props) {
       // The logIn() promise will not resolve until you call `handleAuthRedirect()`
       // from the new window after the user has successfully authenticated.
       console.log('realmUser',realmUser);
-      localStorage.setItem('token',realmUser['_accessToken']);
+    }catch(e){
+      console.log('e',e);
+    }
+  };
+
+  const tryToLoginWithFB = async function(){
+    try{
+      // The redirect URI should be on the same domain as this app and
+      // specified in the auth provider configuration.
+      const credentials = Realm.Credentials.facebook("https://mongodb-realm.oblivio.company/?redirect=1");
+      // Calling logIn() opens a Facebook authentication screen in a new window.
+      const realmUser = await app.logIn(credentials);
+      // The logIn() promise will not resolve until you call `handleAuthRedirect()`
+      // from the new window after the user has successfully authenticated.
+      console.log('realmUser',realmUser);
     }catch(e){
       console.log('e',e);
     }
@@ -108,6 +120,16 @@ export default function App(props) {
   
   return (
     <div className="App">
+      <h1>LOGOUT</h1>
+      <div className="title-input">
+        <button
+          className="fancy-button"
+          onClick={() => tryToLogout()}
+        >
+          Logout
+        </button>
+      </div>
+      <hr /> 
       <h1>Sign in Anonymously</h1>
       <div className="title-input">
         <button
