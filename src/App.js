@@ -105,8 +105,10 @@ export default function App(props) {
     try{
       Realm.handleAuthRedirect();
     }catch(e){
-      console.log('not a redirect from oauth');
+      console.log('couldnt handle redirect from auth',e);
     }
+  }else{
+    console.log('not a redirect from oauth');
   }
   
   
