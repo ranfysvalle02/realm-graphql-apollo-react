@@ -8,12 +8,7 @@ require('dotenv').config();
 
 export default function App(props) {
   const APP_ID = process.env.REACT_APP_APP_ID;
-  // Connect to your MongoDB Realm app
-  const app = new Realm.App(APP_ID);
-
-  app.allUsers.forEach(user => {
-    console.log(`User with id ${user.id} is ${user.isLoggedIn ? "logged in" : "logged out"}`);
-  });
+  const app = new Realm.getApp(APP_ID);
 
   const [searchText, setSearchText] = React.useState("The Matrix Reloaded");
   const { loading, data } = useQuery(FIND_MOVIE, {
@@ -101,7 +96,7 @@ export default function App(props) {
       console.log('e',e);
     }
   };
-  /*
+  
   if(window.location.search && String(window.location.search).includes("?redirect=1")){
     try{
       Realm.handleAuthRedirect();
@@ -109,7 +104,7 @@ export default function App(props) {
       console.log('not a redirect from oauth');
     }
   }
-  */
+  
   
   return (
     <div className="App">
