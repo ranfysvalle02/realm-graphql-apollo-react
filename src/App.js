@@ -87,7 +87,7 @@ export default function App(props) {
     try{
       // The redirect URI should be on the same domain as this app and
       // specified in the auth provider configuration.
-      const credentials = Realm.Credentials.facebook(FB_REDIRECT_URL);
+      const credentials = Realm.Credentials.facebook();
       // Calling logIn() opens a Facebook authentication screen in a new window.
       const realmUser = await app.logIn(credentials);
       // The logIn() promise will not resolve until you call `handleAuthRedirect()`
