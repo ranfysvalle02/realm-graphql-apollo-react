@@ -4,8 +4,6 @@ import * as Realm from "realm-web";
 import { useQuery, useMutation } from "@apollo/client";
 import { FIND_MOVIE, UPDATE_MOVIE } from "./graphql-operations";
 
-var URL = require('url').URL;
-
 require('dotenv').config();
 
 export default function App(props) {
@@ -99,17 +97,15 @@ export default function App(props) {
       console.log('e',e);
     }
   };
-
-  url = new URL(window.location.href);
-
-  if (url.searchParams.get('redirect')) {
+  /*
+  if(window.location.search && String(window.location.search).includes("?redirect=1")){
     try{
       Realm.handleAuthRedirect();
     }catch(e){
       console.log('not a redirect from oauth');
     }
   }
-
+  */
   
   return (
     <div className="App">
